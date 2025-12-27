@@ -22,6 +22,12 @@ void main() async {
 class STLAgentApp extends StatelessWidget {
   const STLAgentApp({super.key});
 
+  static const Color primaryBlue = Color(0xFF1565C0);
+  static const Color accentGold = Color(0xFFFFD700);
+  static const Color darkBg = Color(0xFF121212);
+  static const Color cardBg = Color(0xFF1E1E1E);
+  static const Color surfaceBg = Color(0xFF2C2C2C);
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -30,15 +36,73 @@ class STLAgentApp extends StatelessWidget {
         title: 'STL Agent',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFF1565C0),
-            brightness: Brightness.light,
+          brightness: Brightness.dark,
+          colorScheme: ColorScheme.dark(
+            primary: primaryBlue,
+            secondary: accentGold,
+            surface: cardBg,
+            background: darkBg,
+            onPrimary: Colors.white,
+            onSecondary: Colors.black,
+          ),
+          scaffoldBackgroundColor: darkBg,
+          cardTheme: CardTheme(
+            color: cardBg,
+            elevation: 4,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          ),
+          appBarTheme: AppBarTheme(
+            backgroundColor: darkBg,
+            elevation: 0,
+            centerTitle: true,
+            titleTextStyle: const TextStyle(
+              color: accentGold,
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),
+            iconTheme: const IconThemeData(color: accentGold),
+          ),
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+            backgroundColor: accentGold,
+            foregroundColor: Colors.black,
+            elevation: 8,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          ),
+          navigationBarTheme: NavigationBarThemeData(
+            backgroundColor: cardBg,
+            indicatorColor: primaryBlue.withOpacity(0.3),
+            labelTextStyle: MaterialStateProperty.all(
+              const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+            ),
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: primaryBlue,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              padding: const EdgeInsets.symmetric(vertical: 16),
+            ),
+          ),
+          filledButtonTheme: FilledButtonThemeData(
+            style: FilledButton.styleFrom(
+              backgroundColor: accentGold,
+              foregroundColor: Colors.black,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            ),
+          ),
+          inputDecorationTheme: InputDecorationTheme(
+            filled: true,
+            fillColor: surfaceBg,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide.none,
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: accentGold, width: 2),
+            ),
           ),
           useMaterial3: true,
-          appBarTheme: const AppBarTheme(
-            centerTitle: true,
-            elevation: 0,
-          ),
         ),
         home: const MainNavigation(),
       ),
